@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Photo Detail{% endblock %}
+{% block contents %}
+<br>
+<div class="container">
+    <h2>{{object.title}}</h2>
+    <p>{{object.comment}}</p>
+    <br>
+
+    <p>{{object.posted_at}}に投稿</p>
+    <p><img src="{{object.image1.url}}"></p>
+    {% if object.image2 %}
+        <p><img src="{{object.image2.url}}"></p>
+    {% endif %}
+
+    {% if request.user == object.user %}
+        <form method="post">
+            <a href="{% url 'photo:photo_delete' object.pk %}"
+                class="btn btn-primary my-2">削除する</a>
+        </form>
+    {% endif %}
+{% endblock %}

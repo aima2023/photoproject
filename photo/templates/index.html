@@ -1,0 +1,14 @@
+<!--ベーステンプレートを適用する-->
+{% extends 'base.html' %}
+<!--タブのタイトル-->
+{% block title %}Photo Gallery{% endblock %}
+
+{% block contents %}
+    <!--タイトルテンプレートを埋め込む-->
+    {% include "photos_title.html" %}
+
+    <!--写真一覧テンプレートを埋め込む-->
+    {% include "photos_list.html" %}
+
+    {% include "pagination.html"%}
+{% endblock %}

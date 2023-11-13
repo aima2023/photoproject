@@ -1,0 +1,34 @@
+<!--ベーステンプレートを適用-->
+{% extends 'base.html' %}
+<!--タブのタイトル-->
+{% block title %}Sign up{% endblock %}
+<!--メイン-->
+{% block contents %}
+<div class="container"> 
+    <h3>サインアップ</h3>
+    <form method='post'>
+        <!--CSRF対策のためのタグ-->
+        {% csrf_token %}
+        <!--formから項目を取り出す-->
+        {% for field in form %}
+        <p>
+            {{ field.label_tag }}
+            <br>
+            {{ field }}
+            <br>
+            {% if field.help_text %}
+                <small style="color:grey">{{ field.help_text }}</small>
+            {% endif %}
+
+            {% for error in field.errors %}
+                <p style="color:red">{{ error }}</p>
+            {% endfor %}
+        </p>    
+        {% endfor %}
+        <!--Sign upボタン-->
+        <input type="submit" value="Sign up">
+    </form>
+    <p><a href="{% url 'photo:index' %}">
+        登録をやめてトップページへ戻る</a></p>
+</div>
+{% endblock %}
